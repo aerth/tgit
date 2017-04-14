@@ -27,6 +27,6 @@ tar -v -C [tempdir] -x -z -f [downloaded-tarball]
 and your `mv` should work
 
 ```
-mv -v [directory] [destination]
+mv [directory] [destination]
 
 ```
