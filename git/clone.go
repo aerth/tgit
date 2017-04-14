@@ -26,6 +26,7 @@ var errNotRepository = fmt.Errorf("not a git repository")
 
 // ErrNotSupported catch all
 var ErrNotSupported = fmt.Errorf("feature not supported")
+
 // Clone a repository from source to destination.
 // If destination is an empty string, it will behave like 'git clone <repo>'
 func Clone(repo, destination string) (err error) {
@@ -144,7 +145,7 @@ func untar(file string) (err error) {
 
 // cant just os.Rename, so adding 'mv' as a dependency for now
 func intermove(source, destination string) error {
-	cmd := exec.Command("mv", "-v", source, destination)
+	cmd := exec.Command("mv", source, destination)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	err := cmd.Start()

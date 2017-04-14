@@ -7,19 +7,22 @@ import (
 
 func main() {
 	var source, destination string
-	if len(os.Args) <= 2 || len(os.Args) >= 5 {
+	if len(os.Args) <= 1 || len(os.Args) >= 5 {
 		printusage()
 		os.Exit(111)
 	}
 
-	source = os.Args[2]
-
-	if len(os.Args) == 4 {
-		destination = os.Args[3]
-	}
-
 	switch os.Args[1] {
 	case "clone":
+		if len(os.Args) != 3 && len(os.Args) != 4 {
+			printusage()
+			os.Exit(111)
+		}
+		source = os.Args[2]
+
+		if len(os.Args) == 4 {
+			destination = os.Args[3]
+		}
 		err := git.Clone(source, destination)
 		if err != nil {
 			println(err.Error())
@@ -34,5 +37,5 @@ func main() {
 }
 
 func printusage() {
-	println("usage: git clone <source-repository> [<destination>]")
+	println("usage: tgit clone <source-repository> [<destination>]")
 }
